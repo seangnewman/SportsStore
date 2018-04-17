@@ -8,4 +8,4 @@
  
 
 ###### From
-###### Pro ASP.NET Core MVC, Sixth Edition by Adam Freeman
+###### Pro ASP.NET Core MVC, Seventh Edition by Adam Freeman
