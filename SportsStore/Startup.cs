@@ -50,6 +50,7 @@ namespace SportsStore
             app.UseMvc(routes => {
                 //Setup the middleware to inspect routing. 
                 //Send request to list action or the product controller
+                routes.MapRoute(name: "pagination", template: "Products/Page{productPage}", defaults: new { Controller="Product", action="List"});
                 routes.MapRoute(name: "default", template: "{controller=Product}/{action=List}/{id?}");
             });
 

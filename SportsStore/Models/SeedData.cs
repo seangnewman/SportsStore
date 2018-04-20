@@ -29,6 +29,14 @@ namespace SportsStore.Models
                     },
                     new Product
                     {
+                         Name = "Lifejacket",
+                         Description = "Protective and Fashionable",
+                         Category = "Watersports",
+                         Price = 48.95m
+                     },
+
+                    new Product
+                    {
                         Name = "Soccer Ball",
                         Description = "FIFA-approved size and weight",
                         Category = "Soccer",
