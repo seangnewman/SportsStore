@@ -29,9 +29,11 @@ namespace SportsStore.Tests
             ProductController controller = new ProductController(mock.Object);
             controller.PageSize = 3;
             //Act
-            IEnumerable<Product> result = controller.List(2).ViewData.Model as IEnumerable<Product>;
+            ProductsListViewModel result = controller.List(null, 2).ViewData.Model as ProductsListViewModel;
+
+            //IEnumerable<Product> result = controller.List(2).ViewData.Model as IEnumerable<Product>;
             //Assert
-            Product[] prodArray = result.ToArray();
+            Product[] prodArray = result.Products.ToArray();
             Assert.True(prodArray.Length == 2);
             Assert.Equal("P4", prodArray[0].Name);
             Assert.Equal("P5", prodArray[1].Name);
@@ -53,18 +55,31 @@ namespace SportsStore.Tests
 
             }).AsQueryable<Product>());
             //Arrange
-            ProductController controller = new ProductController(mock.Object);
+            ProductController controller =
+                new ProductController(mock.Object) { PageSize = 3 };
 
-            controller.PageSize = 3;
 
-        //Act
-            ProductsListViewModel result = controller.List(2).ViewData.Model as ProductsListViewModel;
+            //Act
+            ProductsListViewModel result =
+                controller.List(null, 2).ViewData.Model as ProductsListViewModel;
 
             //Assert
-            Product[] prodArray = result.Products.ToArray();
-            Assert.True(prodArray.Length == 2);
-            Assert.Equal("P4", prodArray[0].Name);
-            Assert.Equal("P5", prodArray[1].Name);
+            PagingInfo pageInfo = result.PagingInfo;
+
+            Assert.Equal(2, pageInfo.CurrentPage);
+            Assert.Equal(3, pageInfo.ItemsPerPage);
+            Assert.Equal(5, pageInfo.TotalItems);
+            Assert.Equal(2, pageInfo.TotalPages);
+
+        }
+
+        [Fact]
+        public void Can_Filter_Products()
+        {
+            //Arrange
+            // - create the mock repository
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+
 
         }
     }
