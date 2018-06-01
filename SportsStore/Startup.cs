@@ -31,6 +31,12 @@ namespace SportsStore
 
             services.AddTransient<IProductRepository, EFProductRepository>();
             services.AddMvc();
+
+            //Sets up the in-memory data store
+            services.AddMemoryCache();
+
+            //Registers services used to access session data
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +50,8 @@ namespace SportsStore
 
             // Enables staic content from wwwroot
             app.UseStaticFiles();
+            //Associates requests with sessions when they arrive from client
+            app.UseSession();
 
             //Enables ASP.NET Core
 
