@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace SportsStore.Infrastructure
 {
@@ -19,5 +20,6 @@ namespace SportsStore.Infrastructure
             var sessionData = session.GetString(key);
             return sessionData == null ? default(T) : JsonConvert.DeserializeObject<T>(sessionData);
         }
+
     }
 }
