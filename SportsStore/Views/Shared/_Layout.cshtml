@@ -3,13 +3,22 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" asp-href-include="lib/bootstrap/dist/css/*.min.css" />
+    <link rel="stylesheet" asp-href-include="lib/bootstrap/dist/css/*.min.css"
+          asp-href-exclude="**/*-reboot*, **/*-grid*" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
     <title>SportsStore</title>
 </head>
 <body>
     <div class="navbar navbar-inverse" role="navigation">
-        <a class="navbar-brand" href="#">SPORTS STORE</a>
+        <div class="row">
+            <a class="col navbar-brand" href="#">SPORTS STORE</a>
+            <div class=" ="col-4 text-right"  style="color:white" >
+                @await  Component.InvokeAsync("CartSummary")
+             </div>
+        </div>
     </div>
+    
     <div id="bodyContainer" style="width:50%; margin: 0 auto" >
         <div class="row panel "  style="margin: 0 auto" >
             <div id="categories" class="col-xs-3" style="width:20%">
